@@ -121,12 +121,6 @@ namespace StartFinance.Views
             }
         }
 
-        // Clears the fields
-        private async void ClearFileds_Click(object sender, RoutedEventArgs e)
-        {
-            MessageDialog ClearDialog = new MessageDialog("Cleared", "information");
-            await ClearDialog.ShowAsync();
-        }
 
         private async void EditButton_Click(object sender, RoutedEventArgs e)
         {

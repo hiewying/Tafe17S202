@@ -57,7 +57,7 @@ namespace StartFinance.Views
         {
             try
             {
-                if (IDtextBox.Text.ToString() == "" || firstNTextBox.Text.ToString() == "" || LastNTextBox.Text.ToString() == "" || phoneTextBox.Text.ToString() == "")
+                if (firstNTextBox.Text.ToString() == "" || LastNTextBox.Text.ToString() == "" || phoneTextBox.Text.ToString() == "")
                 {
                     MessageDialog dialog = new MessageDialog("Pleas fill in the required fields", "Oops..!");
                     await dialog.ShowAsync();
@@ -66,12 +66,12 @@ namespace StartFinance.Views
                 {
                     conn.Insert(new ContactDetails()
                     {
-                        contactID = IDtextBox.Text,
-                        firstName = firstNTextBox.Text,
-                        lastName = LastNTextBox.Text,
-                        phoneNumber = phoneTextBox.Text,
+                        firstName = firstNTextBox.Text.ToString(),
+                        lastName = LastNTextBox.Text.ToString(),
+                        phoneNumber = phoneTextBox.Text.ToString(),
                     });
                     Results();
+                    ResetFields();
                 }
             }
 
@@ -82,6 +82,11 @@ namespace StartFinance.Views
                     MessageDialog dialog = new MessageDialog("invalid data", "Oops..!");
                     await dialog.ShowAsync();
                 }
+                else if (ex is SQLiteException)
+                {
+                    MessageDialog dialog = new MessageDialog("This Name already exist, Try Different Name", "Oops..!");
+                    await dialog.ShowAsync();
+                }
                 else
                 {
                     //No Idea
@@ -89,11 +94,6 @@ namespace StartFinance.Views
             }
         }
 
-        private async void ClearFileds_Click(object sender, RoutedEventArgs e)
-        {
-            MessageDialog ClearDialog = new MessageDialog("Cleared", "information");
-            await ClearDialog.ShowAsync();
-        }
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
@@ -119,9 +119,11 @@ namespace StartFinance.Views
             {
                 try
                 {
-                    string ContactLabel = ((ContactDetails)ContactListView.SelectedItem).contactID;
+                    int ContactLabel = ((ContactDetails)ContactListView.SelectedItem).contactID;
                     var delQuery = conn.Query<ContactDetails>("DELETE FROM ContactDetails WHERE contactID='" + ContactLabel + "'");
+                    ContactListView.ItemsSource = delQuery.ToList();
                     Results();
+                    ResetFields();
                 }
                 catch (NullReferenceException)
                 {
@@ -155,9 +157,11 @@ namespace StartFinance.Views
             {
                 try
                 {
-                    string ContactLabels = ((ContactDetails)ContactListView.SelectedItem).contactID;
-                    var updateQuery = conn.Query<ContactDetails>("UPDATE ContactDetails set contactID ='" + IDtextBox.Text + "', firstName ='" + firstNTextBox.Text + "', lastName ='" + LastNTextBox.Text + "',phoneNumber ='" + phoneTextBox.Text + "' where contactID =" + ContactLabels);
+                    int ContactLabels = ((ContactDetails)ContactListView.SelectedItem).contactID;
+                    var updateQuery = conn.Query<ContactDetails>("UPDATE ContactDetails set firstName ='" + firstNTextBox.Text + "', lastName ='" + LastNTextBox.Text + "',phoneNumber ='" + phoneTextBox.Text + "' where contactID =" + ContactLabels);
+                    ContactListView.ItemsSource = updateQuery.ToList();
                     Results();
+                    ResetFields();
                 }
                 catch (NullReferenceException)
                 {
@@ -173,11 +177,17 @@ namespace StartFinance.Views
         {
             if(ContactListView.SelectedItem != null)
             {
-                IDtextBox.Text = ((ContactDetails)ContactListView.SelectedItem).contactID;
                 firstNTextBox.Text = ((ContactDetails)ContactListView.SelectedItem).firstName;
                 LastNTextBox.Text = ((ContactDetails)ContactListView.SelectedItem).lastName;
                 phoneTextBox.Text = ((ContactDetails)ContactListView.SelectedItem).phoneNumber;
             }
+        }
+
+        private void ResetFields()
+        {
+            firstNTextBox.Text = string.Empty;
+            LastNTextBox.Text = string.Empty;
+            phoneTextBox.Text = string.Empty;
         }
     }
 }

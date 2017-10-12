@@ -96,7 +96,7 @@
         <Pivot>
             <RelativePanel.Below>pageHeader</RelativePanel.Below>
             <RelativePanel.Above>pageFooter</RelativePanel.Above>
-            <PivotItem Header="Personal Information" Margin="12,-40,12,0">
+            <PivotItem Header="Add Personal Information" Margin="12,-40,12,0">
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="427"/>

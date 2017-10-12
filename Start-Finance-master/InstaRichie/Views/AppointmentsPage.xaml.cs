@@ -27,14 +27,15 @@ namespace StartFinance.Views
     {
         SQLiteConnection conn;// adding an SQLite connection
         string path = Path.Combine(Windows.Storage.ApplicationData.Current.LocalFolder.Path, "Findata.sqlite");
+
         public AppointmentsPage()
         {
             this.InitializeComponent();
-            NavigationCacheMode = Windows.UI.Xaml.Navigation.NavigationCacheMode.Enabled;
+            NavigationCacheMode = Windows.UI.
+                Xaml.Navigation.NavigationCacheMode.Enabled;
             //Initializing a database
             conn = new SQLite.Net.SQLiteConnection(new SQLite.Net.Platform.WinRT.SQLitePlatformWinRT(), path);
-            //Creating table 
-            conn.CreateTable<Appointments>();
+           
             //DateStamp.Date = DateTime.Now; //gets current date and time
             AppDate.Date = DateTime.Now;
 
@@ -58,15 +59,11 @@ namespace StartFinance.Views
 
             try
             {
-                // checks if account name is null
-                if (AppNametxt.Text.ToString() == "")
+                // checks if values are null
+                if (AppNametxt.Text.ToString() == "" || Date.ToString() == "" || TimePick.Text.ToString() == "" || DayNightPick.SelectedIndex == -1)
                 {
-                    MessageDialog dialog = new MessageDialog("Appointment Name not entered", "Oops..!");
+                    MessageDialog dialog = new MessageDialog("Value(s) not entered", "Oops..!");
                     await dialog.ShowAsync();
-                }
-                else if (AppNametxt.Text.ToString() == "AppointmentName")
-                {
-                    MessageDialog variableerror = new MessageDialog("You cannot use this name", "Oops..!");
                 }
                 else
                 {   // Inserts the data
@@ -140,10 +137,6 @@ namespace StartFinance.Views
                     await ClearDialog.ShowAsync();
                 }
             }
-            else
-            {
-                //
-            }
         }
 
         private async void UpdateItem_Click(object sender, RoutedEventArgs e)
@@ -168,6 +161,7 @@ namespace StartFinance.Views
                 {
                     int SelectedInfo = ((Appointments)AppointmentList.SelectedItem).ID;
                     var queryUpdate = conn.Query<Appointments>("UPDATE Appointments SET AppointmentName = '" + AppNametxt.Text + "', DateOfApp ='" + AppDate.Date.ToString("d") + "', Time='" + TimePick.Text + "', Meridiem = '" + DayNightPick.SelectedValue.ToString() + "'WHERE ID =" + SelectedInfo);
+                    AppointmentList.ItemsSource = queryUpdate.ToList();
                     Results();
                     ClearFields();
                 }
@@ -177,18 +171,15 @@ namespace StartFinance.Views
                     await ClearDialog.ShowAsync();
                 }
             }
-            else
-            {
-                //
-            }
+           
         }
 
             private void ClearFields()
         {
             //Clear Fields
-            AppNametxt.Text = "";
+            AppNametxt.Text = string.Empty;
             AppDate.Date = DateTime.Now;
-            TimePick.Text = "";
+            TimePick.Text =  string.Empty;
             DayNightPick.SelectedValue = -1;
 
         }

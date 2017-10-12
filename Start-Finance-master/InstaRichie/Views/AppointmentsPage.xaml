@@ -61,30 +61,41 @@
             </VisualStateGroup>
         </VisualStateManager.VisualStateGroups>
 
+        <controls:PageHeader x:Name="pageHeader" RelativePanel.AlignLeftWithPanel="True"
+			RelativePanel.AlignRightWithPanel="True"
+			RelativePanel.AlignTopWithPanel="True" Text="Appointments">
 
-        <StackPanel VerticalAlignment="Top" Orientation="Vertical" Height="667">
-            <controls:PageHeader x:Name="appointmentPageHeader" RelativePanel.AlignLeftWithPanel="True"
-			 Text="Appointment Details" Height="48" Margin="0,0,-13,0"/>
-            <TextBox x:Name="AppNametxt" Header="Appointment Name" PlaceholderText="Type of Appointment" Margin="30,30" HorizontalAlignment="Left" Width="675"/>
-            <DatePicker Margin="30,5" Header="Date Of Appointment" x:Name="AppDate" />
-            <TextBox x:Name="TimePick"  PlaceholderText="12:00"  HorizontalAlignment="Left" Header="Time" Margin="30,5" Width="108"/>
-            <ComboBox x:Name="DayNightPick" PlaceholderText="AM" Margin="30,5" >
-                <x:String>AM</x:String>
-                <x:String>PM</x:String>
-            </ComboBox>
-            <ListView x:Name="AppointmentList"  HorizontalAlignment="Stretch" Margin="30,5" Width="1249" ItemTemplate="{StaticResource AppListView}" SelectionChanged="AppointmentList_SelectionChanged" />
-
-        </StackPanel>
-
+            <!--  secondary commands  -->
+            <controls:PageHeader.SecondaryCommands>
+                <AppBarButton Click="{x:Bind ViewModel.GotoSettings}" Label="Settings" />
+                <AppBarButton Click="{x:Bind ViewModel.GotoPrivacy}" Label="Privacy" />
+                <AppBarButton Click="{x:Bind ViewModel.GotoAbout}" Label="About" />
+            </controls:PageHeader.SecondaryCommands>
+        </controls:PageHeader>
 
         <controls:PageHeader x:Name="pageFooter" RelativePanel.AlignLeftWithPanel="True"
 			RelativePanel.AlignRightWithPanel="True"
-			RelativePanel.AlignBottomWithPanel="True" Margin="0,672,0,0">
+			RelativePanel.AlignBottomWithPanel="True">
+
             <controls:PageHeader.PrimaryCommands>
                 <AppBarButton Icon="Add" Label="Add"  Click="AddItem_Click"  />
                 <AppBarButton Icon="Edit" Label="Update" Click="UpdateItem_Click" />
                 <AppBarButton Icon="Delete" Label="Delete" Click="DeleteItem_Click" />
             </controls:PageHeader.PrimaryCommands>
         </controls:PageHeader>
+
+        <StackPanel VerticalAlignment="Top" Orientation="Vertical" Height="638" Margin="0,0,0,-11">
+            <TextBlock x:Name="textBlock" TextWrapping="Wrap" Text="Add Appointments" Margin="30,60,0,30" HorizontalAlignment="Left" Width="289" FontSize="20"/>
+            <TextBox x:Name="AppNametxt" Header="Appointment Name" PlaceholderText="Type of Appointment" Margin="30,0,0,10" HorizontalAlignment="Left" Width="289"/>
+            <DatePicker Margin="30,5" Header="Date Of Appointment" x:Name="AppDate" />
+            <TextBox x:Name="TimePick"  PlaceholderText="12:00"  HorizontalAlignment="Left" Header="Time" Margin="30,5" Width="108"/>
+            <ComboBox x:Name="DayNightPick" PlaceholderText="AM/PM" Margin="30,5" >
+                <x:String>AM</x:String>
+                <x:String>PM</x:String>
+            </ComboBox>
+            <ListView x:Name="AppointmentList"  Margin="30,5,26,5" ItemTemplate="{StaticResource AppListView}" SelectionChanged="AppointmentList_SelectionChanged" Height="230"/>
+
+        </StackPanel>
+
     </RelativePanel>
 </Page>

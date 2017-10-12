@@ -108,7 +108,7 @@
                     <SymbolIcon Width="48" Height="48"
                 		Symbol="People" />
                     <TextBlock Margin="12,0,0,0" VerticalAlignment="Center"
-                               Text="Perosnal Info" />
+                               Text="Personal Information" />
                 </StackPanel>
             </Controls:HamburgerButtonInfo>
 
@@ -132,7 +132,7 @@
                     <SymbolIcon Width="48" Height="48"
                 		Symbol="Pin" />
                     <TextBlock Margin="12,0,0,0" VerticalAlignment="Center"
-                               Text="Accounts" />
+                               Text="Appointments" />
                 </StackPanel>
             </Controls:HamburgerButtonInfo>
 

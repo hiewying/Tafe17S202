@@ -64,15 +64,14 @@
 
         <controls:PageHeader x:Name="pageHeader" RelativePanel.AlignLeftWithPanel="True"
 			RelativePanel.AlignRightWithPanel="True"
-			RelativePanel.AlignTopWithPanel="True" Text="CONTACT DETAILS">
+			RelativePanel.AlignTopWithPanel="True" Text="Contact Details">
 
             <!--  secondary commands  -->
 
         </controls:PageHeader>
-        <TextBox x:Name="IDtextBox" HorizontalAlignment="Left" Margin="48,60,0,0" TextWrapping="Wrap" Header="CONTACT ID" PlaceholderText="Contact ID" VerticalAlignment="Top" Height="60" Width="274"/>
-        <TextBox x:Name="firstNTextBox" HorizontalAlignment="Left" Margin="48,120,0,0" TextWrapping="Wrap" Header="FIRST NAME" PlaceholderText="FirstName" VerticalAlignment="Top" Width="274"/>
-        <TextBox x:Name="LastNTextBox" HorizontalAlignment="Left" Margin="48,185,0,0" TextWrapping="Wrap" Header="LAST NAME" PlaceholderText="LastName" VerticalAlignment="Top" Width="274"/>
-        <TextBox x:Name="phoneTextBox" HorizontalAlignment="Left" Margin="48,250,0,0" TextWrapping="Wrap" Header="PHONE NUMBER" PlaceholderText="PhoneNumber" VerticalAlignment="Top" Width="274"/>
+        <TextBox x:Name="firstNTextBox" HorizontalAlignment="Left" Margin="48,120,0,0" TextWrapping="Wrap" Header="First Name" PlaceholderText="Tommy" VerticalAlignment="Top" Width="274"/>
+        <TextBox x:Name="LastNTextBox" HorizontalAlignment="Left" Margin="48,185,0,0" TextWrapping="Wrap" Header="Last Name" PlaceholderText="Hacket" VerticalAlignment="Top" Width="274"/>
+        <TextBox x:Name="phoneTextBox" HorizontalAlignment="Left" Margin="48,250,0,0" TextWrapping="Wrap" Header="Phone Number" PlaceholderText="123456789" InputScope="Number" VerticalAlignment="Top" Width="274"/>
         <ListView x:Name="ContactListView" HorizontalAlignment="Left" Height="235" Margin="48,315,0,0" VerticalAlignment="Top" Width="274" ItemTemplate="{StaticResource cdListView}" SelectionChanged="ContactListView_SelectionChanged"/>
 
         <controls:PageHeader x:Name="pageFooter" RelativePanel.AlignLeftWithPanel="True"
@@ -87,6 +86,7 @@
 
             </controls:PageHeader.PrimaryCommands>
         </controls:PageHeader>
+        <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Height="35" TextWrapping="Wrap" Text="Add Contact Details" VerticalAlignment="Top" Width="272" Margin="51,68,-261.333,-83" FontSize="20"/>
 
     </RelativePanel>
 </Page>

@@ -10,8 +10,8 @@ namespace StartFinance.Models
     class ContactDetails
     {
 
-        [PrimaryKey]
-        public string contactID { get; set; }
+        [PrimaryKey, AutoIncrement]
+        public int contactID { get; set; }
 
         [Unique]
         public string firstName { get; set; }
