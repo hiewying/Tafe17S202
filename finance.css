@@ -1,0 +1,19 @@
+.container{position:relative; margin-left:10px;height:1200px;width:100%;top:0px}
+header{position:relative;background-color:green;top:0px;width:100%;text-align:center;float:left;height:150px;border-color:blue;border-width:15px;border-style:outset}
+h3{font-size:40px;color:red;font-stretch:8px;text-shadow:14px;text-shadow:yellow;text-shadow:left}
+nav{position::relative;background-color:yellow;width:22%;height:800px;border-color:brown;border-width:12px;border-style:inset;top:150px;font-size:30px;text-align:center;color:red}
+section{position:relative;background-color:#995511;height:800px;width:63%;top:-650px;left:22%}
+aside{position:relative;background-color:red;height:800px;float:right;width:14%;top:-1450px;border-color:#111799;border-width:12px;border-style:double}
+footer{position:relative;height:250px;background-color:#123456;width:100%;top:-650px;border-style:double;Border-color:red;border-width:8px}
+table{text-align:center;margin:190px;margin-top:-20px;}
+	th{border:outset;color:#997799;padding:10px;border-width:8px}
+	td{border:outset;border-width:6px;color:white;padding:15px;}
+	p{text-align:center;color:yellow;font-size:20px}
+	h2{text-align:center}
+	.forms {position:absolute;top:10px;left:1px;height:320px;width:490px;background:
+	#997777;border-color:black;border-style:outset;
+	border-width:10px;border-color:green;}
+	h3{color:red; text-align:center;font-size:260%;margin:-10px;}
+	label{margin-left:20px;}
+	Email{margin-left:25px;}
+	textarea {margin-left:20px;}
